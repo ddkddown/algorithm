@@ -85,4 +85,69 @@ void shell_sort(T* arr = nullptr, len_size len = 0, bool order = false){
     }
 }
 
+/*
+ *@brief: 自顶向下原地归并排序
+ *@param: arr 数组， lo 数组起点，hi 数组终点，order false：降序 true：升序
+ *@return: true 排序成功 false 排序失败
+ *@complex_rate:O(nlogn)
+ */
+template<typename T = int>
+void merge(T* arr = nullptr, len_size lo = 0, len_size mid = 0,
+                  len_size hi = 0, T* arr_tmp = nullptr ,bool order = false){
+    len_size i = lo, j = mid+1;
+    
+    
+    for(len_size k = lo; k <= hi; ++k){
+        arr_tmp[k] = arr[k];
+    }
+    
+    for(len_size k = lo; k <= hi; ++k){
+        if(i > mid){
+            arr[k] = arr_tmp[j++];
+        }
+        else if(j > hi){
+            arr[k] = arr_tmp[i++];
+        }
+        else if((arr_tmp[i] < arr_tmp[j] && order) ||
+                (arr_tmp[i] > arr_tmp[j] && !order)){
+            arr[k] = arr_tmp[i++];
+        }
+        else if ((arr_tmp[i] > arr_tmp[j] && order) ||
+                 (arr_tmp[i] < arr_tmp[j] && !order)){
+            arr[k] = arr_tmp[j++];
+        }
+    }
+}
+
+template<typename T = int>
+void sort(T* arr = nullptr, len_size lo = 0, len_size hi = 0,
+                    T* arr_tmp = nullptr,bool order = false){
+    
+    if(hi <= lo){
+        return;
+    }
+    if((hi - lo) <= 6){
+        insertion_sort(arr,hi-lo+1,order);
+    }
+    
+    len_size mid = lo + (hi - lo)/2;
+    sort(arr, lo, mid, arr_tmp, order);
+    sort(arr, mid+1, hi, arr_tmp, order);
+    merge(arr, lo, mid, hi, arr_tmp, order);
+    for(len_size i = lo; i<=hi; ++i){
+        std::cout<<arr[i];
+    }
+    std::cout<<std::endl;
+    
+}
+
+template<typename T = int>
+void merge_sort(T* arr = nullptr, len_size len = 0,bool order = false){
+    try {
+        T* arr_tmp = new T[len];
+        sort(arr,0,len-1,arr_tmp,order);
+    }catch(std::exception e){
+        return;
+    }
+}
 }
