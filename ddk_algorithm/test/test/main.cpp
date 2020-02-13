@@ -10,9 +10,9 @@
 #include "sort.hpp"
 
 int main(int argc, const char * argv[]) {
-    double a[] = {3.5,1.0,2.3,9.7,0.3,8.6,7.2,6.1,6.2,4.7,4.4};
-    ddk::shell_sort(a,11,true);
-    for(auto tmp : a){
-        std::cout<<tmp;
-    }
+    int a[] = {3,9,6,5,1,8,7,2,4,0,10,15,14,16,12,11,25};
+    ddk::merge_sort(a,17,false);
+        for(auto tmp : a){
+            std::cout<<tmp;
+        }
 }
