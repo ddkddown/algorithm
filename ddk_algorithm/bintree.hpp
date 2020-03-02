@@ -27,7 +27,7 @@ class tree_node{
     private:
         T find_max_in_l_child(){
             if(nullptr == l_child){
-                return {0};
+                return value;
             }
 
             if((nullptr == l_child->r_child)||
@@ -42,13 +42,13 @@ class tree_node{
         size get_height(){
             return height;
         }
-        p_node find(T& obj, p_node t){
-            if(t->value == obj){
-                return t; 
-            }else if(t->l_child && obj < t->value && find(obj, l_child)){
-                return l_child;
-            }else if(t->r_child && obj > t->value && find(obj, r_child)){
-                return r_child;
+        p_node find(T& obj){
+            if(value == obj){
+                return this;
+            }else if(l_child && obj < value){
+                return l_child->find(obj);
+            }else if(r_child && obj > value){
+                return r_child->find(obj);
             }
             return nullptr;
         }
@@ -97,17 +97,17 @@ class tree_node{
             }
 
             if(nullptr == r_child && l_child){
-                value = l_child->value;
-                delete l_child;
+                auto tmp = l_child;
                 l_child = nullptr;
-                return this;
+                delete this;
+                return tmp;
             }
 
             if(nullptr == l_child && r_child){
-                value = r_child->value;
-                delete r_child;
+                auto tmp = r_child;
                 r_child = nullptr;
-                return this;
+                delete this;
+                return tmp;
             }
 
             auto val = find_max_in_l_child();
@@ -147,7 +147,8 @@ class tree_node{
                     }
                 }else{
                     l_child = new node(val);
-                    ++l_child->height;
+                    ++(l_child->height);
+                    height = l_child->height+1;
                     return true;
                 }
             }else{
@@ -163,10 +164,12 @@ class tree_node{
                     }
                 }else{
                     r_child = new node(val);
-                    ++r_child->height;
+                    ++(r_child->height);
+                    height = r_child->height+1;
                     return true;
                 }
             }
+            return false;
         }
         void traverse(traverse_func<T> f, traverse_type t){
             if(preorder_traverse == t){
@@ -223,8 +226,9 @@ class Bintree{
         using node = tree_node<T,size>;
         using p_node = tree_node<T,size>*;
         using ref_node = tree_node<T,size>&;
+        using root_type = std::shared_ptr<node>;
     private:
-        std::shared_ptr<node> tree;
+        root_type tree;
     public:
         Bintree(T& val){ tree = std::make_shared<node>(val);}
         ~Bintree(){}
@@ -258,10 +262,14 @@ class Bintree{
             return tree->get_height();
         }
         p_node find(T& t){
-            return tree->find(t,tree.get());
+            return tree->find(t);
         }
         void delete_node(T& t){
             tree->delete_node(t);
+        }
+        
+        root_type get_root(){
+            return tree;
         }
 }; 
 }  
