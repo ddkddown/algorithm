@@ -38,6 +38,10 @@ class tree_node{
 
             return l_child->r_child->find_max_in_l_child();
         }
+        size update_height(){
+            return (l_child->height>r_child->height?
+                        l_child->height:r_child->height)+1;
+        }
     public:
         size get_height(){
             return height;
@@ -63,8 +67,7 @@ class tree_node{
                     }
                 }else{
                     if(r_child){
-                        height = (l_child->height>r_child->height?
-                                    l_child->height:r_child->height)+1;
+                        height = update_height();
                     }else{
                         height = l_child->height+1;
                     }
@@ -82,8 +85,7 @@ class tree_node{
                     }
                 }else{
                     if(l_child){
-                        height = (l_child->height>r_child->height?
-                                    l_child->height:r_child->height)+1;
+                        height = update_height();
                     }else{
                         height = r_child->height+1;
                     }
@@ -122,8 +124,7 @@ class tree_node{
                 if(nullptr == r_child){
                     height = l_child->height+1;
                 }else{
-                    height = (l_child->height>r_child->height?
-                                l_child->height:r_child->height)+1;
+                    height = update_height();
                 }
             }
 
@@ -138,8 +139,7 @@ class tree_node{
                 if(l_child){
                     if(l_child->insert(val)){
                         if(r_child){
-                            height = (l_child->height>r_child->height?
-                                        l_child->height:r_child->height)+1;
+                            height = update_height();
                         }else{
                             height = l_child->height+1;
                         }
@@ -155,8 +155,7 @@ class tree_node{
                 if(r_child){
                     if(r_child->insert(val)){
                         if(l_child){
-                            height = (l_child->height>r_child->height?
-                                        l_child->height:r_child->height)+1;
+                            height = update_height();
                         }else{
                             height = r_child->height+1;
                         }
