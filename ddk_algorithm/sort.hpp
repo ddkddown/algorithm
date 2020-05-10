@@ -113,8 +113,7 @@ namespace merge_sort{
                     (arr_tmp[i] > arr_tmp[j] && !order)){
                 arr[k] = arr_tmp[i++];
             }
-            else if ((arr_tmp[i] > arr_tmp[j] && order) ||
-                     (arr_tmp[i] < arr_tmp[j] && !order)){
+            else{
                 arr[k] = arr_tmp[j++];
             }
         }
