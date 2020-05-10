@@ -38,7 +38,7 @@ class tree_node{
 
             return l_child->r_child->find_max_in_l_child();
         }
-        size update_height(){
+        inline size update_height(){
             return (l_child->height>r_child->height?
                         l_child->height:r_child->height)+1;
         }
@@ -92,6 +92,10 @@ class tree_node{
                 }
                 return this;
             }
+
+	    if(obj != value){
+		return this;
+	    }
 
             if(nullptr == l_child && nullptr == r_child){
                 delete this;
