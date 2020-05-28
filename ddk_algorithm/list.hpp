@@ -131,10 +131,58 @@ public:
 
             front->next = front->next->next;
             delete tmp;
+            --size;
             return;
         }
     }
 
+    p_node get_front(){
+        if(size <= 0){
+            return std::nullptr;
+        }
+
+        return head->next;
+    }
+
+    void pop_front(){
+        if(size <= 0){
+            return;
+        }
+
+        auto tmp = head->next;
+        head->next = tmp->next;
+        delete tmp;
+        --size;
+    }
+
+    p_node get_back(){
+        if(size <= 0){
+            return std::nullptr;
+        }
+
+        auto tmp = head->next;
+        while(tmp->next != tail){
+            tmp = tmp->next;
+        }
+
+        return tmp;
+    }
+
+    void pop_back(){
+        if(size <= 0){
+            return;
+        }
+
+        auto front = head, tmp = head->next;
+        while(tmp->next != tail){
+            tmp = tmp->next;
+            front = front->next;
+        }
+
+        front->next = tail;
+        delete tmp;
+        --size;
+    }
 };
 
 
