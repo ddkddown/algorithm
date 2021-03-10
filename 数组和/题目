@@ -1,0 +1,6 @@
+ms 。数组「动态和」的计算公式为：runningSum[i] = sum(nums[0]…nums[i]) 。
+
+请返回 nums 的动态和。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/running-sum-of-1d-array
