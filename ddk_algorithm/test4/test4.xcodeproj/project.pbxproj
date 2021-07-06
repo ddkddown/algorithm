@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		46F4A17E24168EF10023D8D6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46F4A17D24168EF10023D8D6 /* main.cpp */; };
+		46F4A18D24168F9C0023D8D6 /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F4A18B24168F9C0023D8D6 /* libcrypto.1.1.dylib */; };
+		46F4A18E24168F9C0023D8D6 /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F4A18C24168F9C0023D8D6 /* libssl.1.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,14 @@
 /* Begin PBXFileReference section */
 		46F4A17A24168EF10023D8D6 /* test4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test4; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F4A17D24168EF10023D8D6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		46F4A18424168F210023D8D6 /* ssl_header.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ssl_header.hpp; path = ../../../../WebServer/webserver/webserver/no_socket/ssl_header.hpp; sourceTree = "<group>"; };
+		46F4A18524168F210023D8D6 /* cert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cert.pem; path = ../../../../WebServer/webserver/webserver/no_socket/cert.pem; sourceTree = "<group>"; };
+		46F4A18624168F220023D8D6 /* sock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = sock.hpp; path = ../../../../WebServer/webserver/webserver/no_socket/sock.hpp; sourceTree = "<group>"; };
+		46F4A18724168F220023D8D6 /* ssl_sock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ssl_sock.hpp; path = ../../../../WebServer/webserver/webserver/no_socket/ssl_sock.hpp; sourceTree = "<group>"; };
+		46F4A18824168F220023D8D6 /* cheader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = cheader.hpp; path = ../../../../WebServer/webserver/webserver/no_socket/cheader.hpp; sourceTree = "<group>"; };
+		46F4A18924168F220023D8D6 /* privkey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = privkey.pem; path = ../../../../WebServer/webserver/webserver/no_socket/privkey.pem; sourceTree = "<group>"; };
+		46F4A18B24168F9C0023D8D6 /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../../../../usr/local/Cellar/openssl@1.1/1.1.1d/lib/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
+		46F4A18C24168F9C0023D8D6 /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../../../../usr/local/Cellar/openssl@1.1/1.1.1d/lib/libssl.1.1.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F4A18D24168F9C0023D8D6 /* libcrypto.1.1.dylib in Frameworks */,
+				46F4A18E24168F9C0023D8D6 /* libssl.1.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +55,7 @@
 			children = (
 				46F4A17C24168EF10023D8D6 /* test4 */,
 				46F4A17B24168EF10023D8D6 /* Products */,
+				46F4A18A24168F9C0023D8D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +70,24 @@
 		46F4A17C24168EF10023D8D6 /* test4 */ = {
 			isa = PBXGroup;
 			children = (
+				46F4A18524168F210023D8D6 /* cert.pem */,
+				46F4A18824168F220023D8D6 /* cheader.hpp */,
+				46F4A18924168F220023D8D6 /* privkey.pem */,
+				46F4A18624168F220023D8D6 /* sock.hpp */,
+				46F4A18424168F210023D8D6 /* ssl_header.hpp */,
+				46F4A18724168F220023D8D6 /* ssl_sock.hpp */,
 				46F4A17D24168EF10023D8D6 /* main.cpp */,
 			);
 			path = test4;
+			sourceTree = "<group>";
+		};
+		46F4A18A24168F9C0023D8D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46F4A18B24168F9C0023D8D6 /* libcrypto.1.1.dylib */,
+				46F4A18C24168F9C0023D8D6 /* libssl.1.1.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +267,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/openssl@1.1/1.1.1d/include/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/openssl@1.1/1.1.1d/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +280,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/openssl@1.1/1.1.1d/include/";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/openssl@1.1/1.1.1d/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
