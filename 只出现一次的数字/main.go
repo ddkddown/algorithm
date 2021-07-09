@@ -8,3 +8,17 @@ func singleNumber(nums []int) int {
 
 	return ret
 }
+
+func kthToLast(head *ListNode, k int) int {
+    l := 0
+    var tmp []int
+    for head != nil {
+        l++
+        tmp := append(tmp, head->Val)
+		head = head->Next
+    }
+
+    l -= k
+    return tmp[l]
+
+}
